@@ -1,0 +1,330 @@
+@font-face {
+  font-family: "Inter Variable";
+  src: url("/sites/aidigital/fonts/Inter-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-SemiBold.ttf")
+    format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-ExtraBold.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Barlow Semi Condensed";
+  src: url("/sites/aidigital/fonts/BarlowSemiCondensed-Black.ttf")
+    format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.aidigital {
+  --aid-blue: #0009dc;
+  --aid-blue-100: #f2f3fd;
+  --aid-blue-pill: #e5e6fb;
+  --aid-lime: #aef33e;
+  --aid-lime-hover: #94da3d;
+  --aid-ink: #26263a;
+  --aid-grey: #80808e;
+  --aid-bg: #f9f9f9;
+  --aid-white: #fff;
+  --aid-black: #000;
+  --aid-font-body: "Inter Variable", Arial, sans-serif;
+  --aid-font-heading: "Barlow Semi Condensed", Arial, sans-serif;
+  --aid-container: 80rem;
+  --aid-home: 90rem;
+
+  color: var(--aid-ink);
+  background: var(--aid-bg);
+  font-family: var(--aid-font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.aidigital * {
+  box-sizing: border-box;
+}
+
+.aidigital a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.aidigital img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aid-container {
+  width: 100%;
+  max-width: var(--aid-container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.aid-home-container {
+  width: 100%;
+  max-width: var(--aid-home);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 4.5rem);
+}
+
+.aid-heading {
+  font-family: var(--aid-font-heading);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.aid-heading-capitalize {
+  text-transform: capitalize;
+}
+
+.aid-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  font-size: 0.93rem;
+  line-height: 1.2;
+  transition: background-color 0.3s, opacity 0.3s, border-color 0.3s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.aid-btn-lime {
+  background: var(--aid-lime);
+  color: var(--aid-blue);
+}
+
+.aid-btn-lime:hover {
+  background: var(--aid-lime-hover);
+}
+
+.aid-btn-outline-white {
+  background: transparent;
+  color: var(--aid-white);
+  border-color: var(--aid-white);
+}
+
+.aid-btn-outline-white:hover {
+  opacity: 0.8;
+}
+
+.aid-btn-blue {
+  background: var(--aid-blue);
+  color: var(--aid-white);
+}
+
+.aid-btn-blue:hover {
+  opacity: 0.9;
+}
+
+.aid-tag {
+  display: inline-flex;
+  align-items: center;
+  background: var(--aid-blue);
+  color: var(--aid-white);
+  font-family: var(--aid-font-heading);
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.aid-tag-white {
+  background: var(--aid-white);
+  color: var(--aid-blue);
+}
+
+.aid-mask-fade {
+  -webkit-mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 150px,
+    black calc(100% - 150px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    transparent 0%,
+    black 150px,
+    black calc(100% - 150px),
+    transparent 100%
+  );
+}
+
+@keyframes aid-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.aid-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: aid-marquee 35s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aid-marquee-track {
+    animation: none;
+  }
+}
+
+/* Vengeance UI LogoSlider — infinite track + edge blur */
+.aid-vu-logo-slider .logo-slider__container {
+  min-height: 4.5rem;
+}
+
+.aid-vu-logo-slider .logo-slider__track {
+  width: max-content;
+  animation: aid-vu-logo-marquee calc(var(--speed, 40) * 1s) linear infinite;
+}
+
+.aid-vu-logo-slider .logo-slider__container[data-pause-on-hover="true"]:hover .logo-slider__track {
+  animation-play-state: paused;
+}
+
+.aid-vu-logo-slider .logo-slider__item {
+  width: 180px !important;
+  aspect-ratio: auto !important;
+  height: auto !important;
+}
+
+.aid-vu-logo-slider .logo-slider__item img {
+  filter: none !important;
+  height: 2.5rem !important;
+  width: auto !important;
+}
+
+.aid-vu-logo-slider .logo-slider__blur > div {
+  backdrop-filter: blur(calc(var(--blur-index, 0) * 0.6px * var(--blur, 1)));
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, calc(var(--blur-index, 0) / var(--blurs, 8))),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, calc(var(--blur-index, 0) / var(--blurs, 8))),
+    transparent
+  );
+}
+
+@keyframes aid-vu-logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aid-vu-logo-slider .logo-slider__track {
+    animation: none;
+  }
+}
+
+.lenis {
+  scroll-behavior: auto;
+}
+
+/* Hero Lottie — bold full-bleed wordmark (match aidigital scale) */
+.home-hero {
+  overflow-x: clip;
+}
+
+.aid-hero-stage {
+  width: 100%;
+  max-width: none;
+}
+
+.hero-lottie-wrap {
+  width: min(100%, 100vw);
+  margin-inline: auto;
+}
+
+.hero-lottie-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2223 / 900;
+  max-height: min(58vw, 560px);
+  min-height: 12rem;
+}
+
+.hero-lottie-stage > div,
+.hero-lottie-stage svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  .home-hero .aid-hero-stage {
+    width: min(100%, 1920px);
+    padding-inline: clamp(0.25rem, 0.8vw, 1rem);
+  }
+
+  .hero-lottie-wrap {
+    max-width: min(1680px, 98vw);
+  }
+
+  .hero-lottie-stage {
+    max-height: min(44vw, 580px);
+    min-height: 16rem;
+  }
+}
