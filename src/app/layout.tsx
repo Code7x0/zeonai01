@@ -3,10 +3,9 @@ import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title:
-    "AI Digital: Your Partner for Responsible, AI-Optimized Marketing & Advertising",
+  title: "ZeonAI Labs | Governed enterprise AI platform",
   description:
-    "Discover how walled gardens like Google and Meta impact advertisers and learn strategies to regain control with an Open Garden approach.",
+    "The governed AI platform for enterprise knowledge and workflows. AI Workspace answers from your documents with citations; agents route paperwork with access control and an audit log built in.",
   icons: {
     icon: "/sites/aidigital/favicon.png",
   },
@@ -18,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="flex min-h-full flex-col">
+    <html lang="en" className="antialiased">
+      <body className="min-h-dvh">
         <SmoothScroll />
         {children}
       </body>

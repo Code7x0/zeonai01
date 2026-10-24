@@ -1,8 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Link from "next/link";
-import { SITE, footerColumns } from "./constants";
+import { footerColumns } from "./constants";
+import { zeonMeta } from "@/lib/zeonai/content";
 
 export function Footer() {
   const [status, setStatus] = useState<"idle" | "ok" | "error" | "loading">(
@@ -38,7 +38,7 @@ export function Footer() {
     <footer className="bg-[#0b0b18] pt-16 pb-8 text-white">
       <div className="aid-container">
         <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h3 className="mb-4 font-[family-name:var(--aid-font-heading)] text-sm font-bold tracking-wide text-white uppercase">
@@ -47,31 +47,41 @@ export function Footer() {
                 <ul className="flex flex-col gap-2.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      {link.href === "/" ? (
-                        <Link
-                          href="/"
-                          className="text-sm text-white/70 transition hover:text-white"
-                        >
-                          {link.label}
-                        </Link>
-                      ) : (
-                        <a
-                          href={link.href}
-                          className="text-sm text-white/70 transition hover:text-white"
-                        >
-                          {link.label}
-                        </a>
-                      )}
+                      <a
+                        href={link.href}
+                        className="text-sm text-white/70 transition hover:text-white"
+                      >
+                        {link.label}
+                      </a>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
+            <div>
+              <h3 className="mb-4 font-[family-name:var(--aid-font-heading)] text-sm font-bold tracking-wide text-white uppercase">
+                Social
+              </h3>
+              <ul className="flex flex-col gap-2.5">
+                {zeonMeta.social.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-white/70 transition hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div className="rounded-2xl bg-white/5 p-6 md:p-8">
             <h3 className="aid-heading mb-4 text-2xl text-white normal-case md:text-[1.75rem]">
-              Never miss what’s new in the industry
+              Stay in touch with ZeonAI Labs
             </h3>
             {status === "ok" ? (
               <p className="text-sm text-[var(--aid-lime)]">
@@ -113,13 +123,15 @@ export function Footer() {
                   </p>
                 ) : null}
                 <p className="text-xs text-white/50">
-                  By clicking “Subscribe” I agree to the{" "}
+                  By clicking “Subscribe” I agree that ZeonAI Labs may contact
+                  me. See the{" "}
                   <a
-                    href={`${SITE}/legal/privacy-policy`}
+                    href="/privacy-policy"
                     className="underline underline-offset-2"
                   >
-                    Privacy Policy
+                    privacy policy
                   </a>
+                  .
                 </p>
               </form>
             )}
@@ -127,29 +139,17 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-4 pt-8 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 AI Digital. All rights reserved.</p>
+          <p>© 2026 ZeonAI Labs Private Ltd. All rights reserved.</p>
           <div className="flex flex-wrap gap-x-4 gap-y-2">
-            {[
-              ["Privacy Policy", `${SITE}/legal/privacy-policy`],
-              ["Cookies Policy", `${SITE}/legal/cookie-policy`],
-              ["Terms of Use", `${SITE}/legal/terms-of-use`],
-              [
-                "Job Applicant Privacy Policy",
-                `${SITE}/legal/job-applicant-privacy-notice`,
-              ],
-              [
-                "California Privacy Act Notice",
-                `${SITE}/legal/california-privacy-rights-act-notice-to-california-residents`,
-              ],
-              [
-                "CCPA & GDPR Rights Form",
-                "https://share.hsforms.com/1PsKZc_6lQIapNZWY9E7B6wdiu7e",
-              ],
-            ].map(([label, href]) => (
-              <a key={label} href={href} className="hover:text-white">
-                {label}
-              </a>
-            ))}
+            <a href="/terms" className="hover:text-white">
+              Terms
+            </a>
+            <a href="/privacy-policy" className="hover:text-white">
+              Privacy policy
+            </a>
+            <a href={zeonMeta.email} className="hover:text-white">
+              {zeonMeta.contactEmail}
+            </a>
           </div>
         </div>
       </div>

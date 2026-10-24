@@ -6,9 +6,18 @@ import Lenis from "lenis";
 import { gsap, registerGsap, ScrollTrigger } from "@/lib/motion/gsap";
 import { prefersReducedMotion } from "@/lib/motion/reduced-motion";
 
+function refreshScroll(lenis: Lenis) {
+  lenis.resize();
+  ScrollTrigger.refresh();
+}
+
 /**
  * Lenis owns smooth scrolling. GSAP ScrollTrigger syncs via Lenis scroll events.
  * Skipped when prefers-reduced-motion is set.
+ *
+ * ResizeObserver keeps Lenis/ScrollTrigger in sync when late layout (images,
+ * tall sections, pin spacers) changes document height — otherwise scroll can
+ * stop mid-page before the footer.
  */
 export function SmoothScroll() {
   const pathname = usePathname();
@@ -27,6 +36,7 @@ export function SmoothScroll() {
       smoothWheel: true,
       touchMultiplier: 1.15,
       wheelMultiplier: 0.92,
+      autoResize: true,
     });
 
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
@@ -40,19 +50,40 @@ export function SmoothScroll() {
     gsap.ticker.add(ticker);
     gsap.ticker.lagSmoothing(0);
 
-    const onResize = () => {
-      lenis.resize();
-      ScrollTrigger.refresh();
+    let syncRaf = 0;
+    const sync = () => {
+      if (syncRaf) return;
+      syncRaf = window.requestAnimationFrame(() => {
+        syncRaf = 0;
+        refreshScroll(lenis);
+      });
     };
+
+    const onResize = () => sync();
     window.addEventListener("resize", onResize);
 
-    void document.fonts.ready.then(() => {
-      lenis.resize();
-      ScrollTrigger.refresh();
+    const ro = new ResizeObserver(() => sync());
+    ro.observe(document.body);
+
+    const onImgLoad = () => sync();
+    document.querySelectorAll("img").forEach((img) => {
+      if (!img.complete) img.addEventListener("load", onImgLoad, { once: true });
     });
 
+    void document.fonts.ready.then(sync);
+
+    // Late layout after GSAP pins / client sections mount
+    const t1 = window.setTimeout(sync, 100);
+    const t2 = window.setTimeout(sync, 600);
+    const t3 = window.setTimeout(sync, 1500);
+
     return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+      window.clearTimeout(t3);
+      if (syncRaf) window.cancelAnimationFrame(syncRaf);
       window.removeEventListener("resize", onResize);
+      ro.disconnect();
       gsap.ticker.remove(ticker);
       lenis.off("scroll", onScroll);
       lenis.destroy();
@@ -64,7 +95,11 @@ export function SmoothScroll() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
-    const id = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+    const lenis = (window as unknown as { __lenis?: Lenis }).__lenis;
+    const id = window.requestAnimationFrame(() => {
+      if (lenis) refreshScroll(lenis);
+      else ScrollTrigger.refresh();
+    });
     return () => window.cancelAnimationFrame(id);
   }, [pathname]);
 

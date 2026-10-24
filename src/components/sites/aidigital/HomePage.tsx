@@ -1,3 +1,4 @@
+import { Architecture } from "./Architecture";
 import { Articles } from "./Articles";
 import { Elevate } from "./Elevate";
 import { Hero } from "./Hero";
@@ -11,6 +12,7 @@ export function HomePage() {
     <main>
       <Hero />
       <Elevate />
+      <Architecture />
       <Services />
       <OpenGarden />
       <Team />

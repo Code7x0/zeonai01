@@ -1,143 +1,134 @@
-"use client";
+import { zeonEngineering, zeonTrust } from "@/lib/zeonai/content";
 
-import Image from "next/image";
-import { useRef, useState } from "react";
-import { SITE, YT_GARDEN, asset } from "./constants";
-import { VideoModal } from "./VideoModal";
-import TextAnimation from "@/components/ui/staggerText";
-import { gsap, registerGsap, useGSAP } from "@/lib/motion/gsap";
-import { prefersReducedMotion } from "@/lib/motion/reduced-motion";
-
-const collage = [
-  {
-    src: asset("images/open-garden.avif"),
-    className:
-      "absolute top-[4.37rem] left-[clamp(1.8rem,2vw,4.6rem)] z-[1] w-[min(42%,15.43rem)] rounded-2xl shadow-md",
-  },
-  {
-    src: asset("images/open-garden2.avif"),
-    className:
-      "absolute top-[13.06rem] left-[-0.5rem] z-[2] w-[min(40%,15.23rem)] rounded-2xl shadow-md",
-  },
-  {
-    src: asset("images/home-new.avif"),
-    className:
-      "absolute bottom-[8.06rem] left-[-1rem] z-[3] h-[14.5rem] w-[min(70%,25rem)] rounded-2xl object-cover shadow-lg",
-  },
-  {
-    src: asset("images/open-garden-collage.avif"),
-    className:
-      "absolute top-[2rem] right-[clamp(0rem,2vw,2rem)] z-[2] w-[min(48%,18rem)] rounded-2xl shadow-md",
-  },
-  {
-    src: asset("images/open-garden-5.avif"),
-    className:
-      "absolute right-[10%] bottom-[12rem] z-[1] w-[min(32%,12rem)] rounded-2xl shadow-sm",
-  },
-  {
-    src: asset("images/open-garden6.avif"),
-    className:
-      "absolute right-[clamp(0rem,3vw,3rem)] bottom-[3rem] z-[4] w-[min(44%,16rem)] rounded-2xl shadow-lg",
-  },
-] as const;
-
+/**
+ * Section 03 Engineering (simple white) + Trust / governance.
+ */
 export function OpenGarden() {
-  const [open, setOpen] = useState(false);
-  const collageRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      registerGsap();
-      if (prefersReducedMotion()) return;
-      const root = collageRef.current;
-      if (!root) return;
-
-      gsap.from(root.querySelectorAll("[data-collage-item]"), {
-        opacity: 0,
-        y: 36,
-        scale: 0.96,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: root,
-          start: "top 75%",
-          once: true,
-        },
-      });
-    },
-    { scope: collageRef },
-  );
-
   return (
-    <section className="relative overflow-hidden bg-[#f9f9f9] py-16 md:py-24">
-      <div className="aid-container grid items-center gap-12 lg:grid-cols-2 lg:gap-8">
-        <div
-          ref={collageRef}
-          className="relative mx-auto hidden min-h-[40rem] w-full max-w-[38rem] lg:block"
-        >
-          {collage.map((img) => (
-            <Image
-              key={img.src}
-              src={img.src}
-              alt=""
-              width={400}
-              height={300}
-              data-collage-item
-              className={`${img.className} object-cover`}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 mx-auto flex max-w-xl flex-col items-start gap-5 lg:mx-0">
-          <p className="aid-heading text-[clamp(1.25rem,2vw,1.5rem)] text-[var(--aid-blue)]">
-            the open garden
-            <br />
-            framework
-          </p>
-          <h2 className="aid-heading text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] text-[var(--aid-blue)]">
-            <TextAnimation divideBy="word">
-              Philosophy That Powers It All
-            </TextAnimation>
-          </h2>
-          <p className="text-[0.9375rem] leading-[1.5] text-[var(--aid-ink)] md:text-base">
-            One belief sits underneath everything we do: media should never be
-            limited by walled gardens. The Open Garden Framework keeps it that
-            way — open, connected access to best-in-class technology, DSPs,
-            data, inventory, and decisioning, no matter how you work with us.
-          </p>
-          <div className="flex flex-wrap gap-3 pt-1">
-            <a
-              href={`${SITE}/open-garden-framework`}
-              className="aid-btn aid-btn-lime"
+    <>
+      <section
+        id={zeonEngineering.id}
+        className="relative overflow-hidden bg-white py-16 md:py-24"
+        aria-labelledby="engineering-title"
+      >
+        <div className="aid-container">
+          <header className="max-w-3xl">
+            <p className="text-xs font-semibold tracking-wide text-[var(--aid-blue)] uppercase">
+              {zeonEngineering.eyebrow}
+            </p>
+            <h2
+              id="engineering-title"
+              className="aid-heading mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)] text-[var(--aid-blue)]"
             >
-              Explore the Open Garden
-            </a>
-            <button
-              type="button"
-              className="aid-btn border border-[var(--aid-blue)] text-[var(--aid-blue)]"
-              onClick={() => setOpen(true)}
-            >
-              Watch video
-            </button>
-          </div>
+              {zeonEngineering.title}
+            </h2>
+            <p className="mt-4 text-[1.0625rem] leading-[1.5] text-[var(--aid-ink)]">
+              {zeonEngineering.lead}
+            </p>
+          </header>
 
-          <div className="mt-4 grid w-full grid-cols-2 gap-3 lg:hidden">
-            {collage.slice(0, 4).map((img) => (
-              <Image
-                key={img.src}
-                src={img.src}
-                alt=""
-                width={300}
-                height={220}
-                className="h-36 w-full rounded-xl object-cover"
-              />
+          <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {zeonEngineering.pieces.map((piece) => (
+              <li
+                key={piece.num}
+                className="border-t border-black/10 pt-5"
+              >
+                <p className="font-mono text-[0.75rem] tracking-[0.08em] text-[var(--aid-grey)]">
+                  {piece.num} · {piece.label}
+                </p>
+                <h3 className="aid-heading mt-2 text-[1.125rem] text-[var(--aid-blue)] md:text-[1.25rem]">
+                  {piece.title}
+                </h3>
+                <p className="mt-2 text-[0.9375rem] leading-[1.5] text-[var(--aid-ink)]">
+                  {piece.body}
+                </p>
+              </li>
             ))}
+          </ol>
+        </div>
+      </section>
+
+      <section
+        id={zeonTrust.id}
+        className="relative overflow-hidden bg-[#f9f9f9] py-16 md:py-24"
+      >
+        <div className="aid-container">
+          <div className="rounded-2xl bg-[var(--aid-blue)] p-6 text-white md:p-10">
+            <p className="text-xs font-semibold tracking-wide text-[var(--aid-lime)] uppercase">
+              {zeonTrust.eyebrow}
+            </p>
+            <h3 className="aid-heading mt-2 text-[clamp(1.5rem,3vw,2.25rem)] text-white">
+              {zeonTrust.title}
+            </h3>
+            <p className="mt-3 max-w-3xl text-[0.9375rem] leading-[1.45] text-white/90">
+              {zeonTrust.lead}
+            </p>
+            <h4 className="mt-8 text-sm font-semibold tracking-wide text-[var(--aid-lime)] uppercase">
+              {zeonTrust.accessTitle}
+            </h4>
+            <ul className="mt-3 flex flex-col gap-2 text-[0.875rem] text-white/90 md:text-[0.9375rem]">
+              {zeonTrust.points.map((p) => (
+                <li key={p} className="flex gap-2">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--aid-lime)]" />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 max-w-3xl text-[0.875rem] leading-[1.45] text-white/85">
+              {zeonTrust.governedNote}
+            </p>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-black/5 bg-white p-6 md:p-10">
+            <h3 className="aid-heading text-[clamp(1.35rem,2.5vw,1.85rem)] text-[var(--aid-blue)]">
+              {zeonTrust.securityTitle}
+            </h3>
+            <p className="mt-3 max-w-3xl text-[0.9375rem] leading-[1.45] text-[var(--aid-ink)]">
+              {zeonTrust.securityLead}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {zeonTrust.certifications.map((c) => (
+                <div
+                  key={c.name}
+                  className="rounded-xl border border-black/5 bg-[var(--aid-bg)] px-4 py-3"
+                >
+                  <p className="text-sm font-semibold text-[var(--aid-blue)]">
+                    {c.name}
+                  </p>
+                  <p className="text-xs text-[var(--aid-grey)]">{c.detail}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {zeonTrust.securityPoints.map((item) => (
+                <article key={item.title}>
+                  <h4 className="text-sm font-semibold text-[var(--aid-blue)]">
+                    {item.title}
+                  </h4>
+                  <p className="mt-1 text-[0.875rem] leading-[1.45] text-[var(--aid-ink)]">
+                    {item.body}
+                  </p>
+                </article>
+              ))}
+            </div>
+            <div className="mt-8">
+              <p className="text-sm font-semibold text-[var(--aid-blue)]">
+                Deployment options
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {zeonTrust.deployments.map((d) => (
+                  <li
+                    key={d}
+                    className="rounded-full border border-[var(--aid-blue)]/15 px-3 py-1 text-xs font-medium text-[var(--aid-blue)]"
+                  >
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-
-      <VideoModal open={open} videoId={YT_GARDEN} onClose={() => setOpen(false)} />
-    </section>
+      </section>
+    </>
   );
 }
