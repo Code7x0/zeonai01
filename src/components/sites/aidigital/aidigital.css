@@ -3360,32 +3360,18 @@
   color: var(--aid-ink);
 }
 
-/* Diagram / chart shell — card for all 6 chapter visuals */
 .aid-eng-visual {
   margin: 0;
-  padding: clamp(1.15rem, 2.2vw, 1.55rem);
-  background: var(--aid-white);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 10%, transparent),
-    0 2px 12px color-mix(in oklab, var(--aid-ink) 7%, transparent);
-}
-
-/* Nested single panel / spine sits flush inside the outer card */
-.aid-eng-visual > .aid-eng-panel:only-child,
-.aid-eng-visual > .aid-eng-pipe-spine {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
 }
 
 .aid-eng-panel {
-  background: color-mix(in oklab, var(--aid-bg) 92%, var(--ws-cream, #f2ecdc));
-  padding: 1.15rem 1.25rem 1.3rem;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 9%, transparent);
+  background: color-mix(in oklab, var(--aid-bg) 88%, var(--ws-cream, #f2ecdc));
+  padding: 1rem 1.1rem 1.15rem;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--aid-ink) 8%, transparent);
 }
 
 .aid-eng-panel + .aid-eng-panel {
-  margin-top: 0.85rem;
+  margin-top: 0.75rem;
 }
 
 .aid-eng-panel-head {
@@ -3482,7 +3468,7 @@
 }
 
 .aid-eng-chips li {
-  padding: 0.4rem 0.65rem;
+  padding: 0.3rem 0.55rem;
   background: var(--aid-white);
   box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-blue) 18%, transparent);
   font-size: 0.75rem;
@@ -3519,7 +3505,7 @@
 
 .aid-eng-pipe-spine {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.7rem;
   padding: 1.1rem 1.15rem 1.2rem;
   background: color-mix(in oklab, var(--aid-bg) 82%, var(--ws-cream, #f2ecdc));
   box-shadow: inset 0 1px 0 color-mix(in oklab, var(--aid-ink) 8%, transparent);
@@ -3528,10 +3514,10 @@
 .aid-eng-pipe-node {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.9rem 1rem;
-  background: color-mix(in oklab, var(--aid-bg) 94%, var(--ws-cream, #f2ecdc));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 10%, transparent);
+  gap: 0.2rem;
+  padding: 0.7rem 0.85rem;
+  background: var(--aid-white);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 8%, transparent);
 }
 
 .aid-eng-pipe-node--hub {
@@ -3577,11 +3563,11 @@
 .aid-eng-pipe-subs li {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  min-height: 4.75rem;
-  padding: 0.75rem 0.7rem 0.85rem;
-  background: color-mix(in oklab, var(--aid-bg) 94%, var(--ws-cream, #f2ecdc));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 10%, transparent);
+  gap: 0.35rem;
+  min-height: 4.5rem;
+  padding: 0.55rem 0.55rem 0.65rem;
+  background: var(--aid-white);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 8%, transparent);
 }
 
 .aid-eng-pipe-sub-num {
@@ -3614,11 +3600,11 @@
 }
 
 .aid-eng-pipe-outs li {
-  padding: 0.45rem 0.7rem;
+  padding: 0.35rem 0.6rem;
   font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
   font-size: 0.7rem;
   color: var(--aid-blue);
-  background: color-mix(in oklab, var(--aid-bg) 94%, var(--ws-cream, #f2ecdc));
+  background: var(--aid-white);
   box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-blue) 22%, transparent);
 }
 
@@ -3677,10 +3663,10 @@
 
 .aid-eng-code {
   margin: 0;
-  padding: 1rem 1.05rem;
+  padding: 0.85rem 0.9rem;
   overflow-x: auto;
-  background: color-mix(in oklab, var(--aid-bg) 94%, var(--ws-cream, #f2ecdc));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 9%, transparent);
+  background: var(--aid-white);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 8%, transparent);
   font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
   font-size: 0.75rem;
   line-height: 1.5;
@@ -3688,26 +3674,20 @@
   white-space: pre;
 }
 
-.aid-eng-rules .aid-eng-panel {
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-
 .aid-eng-deleg-case {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
-  margin-bottom: 1.15rem;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
 }
 
 .aid-eng-deleg-case > div {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.9rem 1rem;
-  background: color-mix(in oklab, var(--aid-bg) 94%, var(--ws-cream, #f2ecdc));
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--aid-ink) 10%, transparent);
+  gap: 0.2rem;
+  padding: 0.7rem 0.8rem;
+  background: color-mix(in oklab, var(--aid-bg) 88%, var(--ws-cream, #f2ecdc));
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--aid-ink) 8%, transparent);
 }
 
 .aid-eng-timeline {
