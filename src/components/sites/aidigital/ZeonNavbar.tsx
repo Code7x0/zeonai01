@@ -114,7 +114,7 @@ export function ZeonNavbar() {
                     ? "#book-a-demo"
                     : zeonDemo.cta.href
                 }
-                className="aid-btn aid-btn-blue !px-4 !py-3 text-[0.93rem] max-lg:hidden"
+                className="aid-btn aid-btn-lime !px-4 !py-3 text-[0.93rem] max-lg:hidden"
               >
                 Book a demo
               </a>
