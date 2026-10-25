@@ -1,52 +1,13 @@
-import { zeonEngineering, zeonTrust } from "@/lib/zeonai/content";
+import { zeonTrust } from "@/lib/zeonai/content";
+import { Engineering } from "./engineering/Engineering";
 
 /**
- * Section 03 Engineering (simple white) + Trust / governance.
+ * Section 03 Engineering storytelling + Trust / governance.
  */
 export function OpenGarden() {
   return (
     <>
-      <section
-        id={zeonEngineering.id}
-        className="relative overflow-hidden bg-white py-16 md:py-24"
-        aria-labelledby="engineering-title"
-      >
-        <div className="aid-container">
-          <header className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-wide text-[var(--aid-blue)] uppercase">
-              {zeonEngineering.eyebrow}
-            </p>
-            <h2
-              id="engineering-title"
-              className="aid-heading mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)] text-[var(--aid-blue)]"
-            >
-              {zeonEngineering.title}
-            </h2>
-            <p className="mt-4 text-[1.0625rem] leading-[1.5] text-[var(--aid-ink)]">
-              {zeonEngineering.lead}
-            </p>
-          </header>
-
-          <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {zeonEngineering.pieces.map((piece) => (
-              <li
-                key={piece.num}
-                className="border-t border-black/10 pt-5"
-              >
-                <p className="font-mono text-[0.75rem] tracking-[0.08em] text-[var(--aid-grey)]">
-                  {piece.num} · {piece.label}
-                </p>
-                <h3 className="aid-heading mt-2 text-[1.125rem] text-[var(--aid-blue)] md:text-[1.25rem]">
-                  {piece.title}
-                </h3>
-                <p className="mt-2 text-[0.9375rem] leading-[1.5] text-[var(--aid-ink)]">
-                  {piece.body}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <Engineering />
 
       <section
         id={zeonTrust.id}
