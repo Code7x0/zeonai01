@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 import type { ZeonCapabilityVisual } from "@/lib/zeonai/content";
 
 /**
- * Light editorial product canvas — paper surfaces, cobalt interaction,
- * fine borders. Sample-data only; no ambient particles / WebGL.
+ * Dark product canvas — near-black wash with warm center glow and cobalt
+ * accents (Ask AI / AI Workspace modal tone). Sample-data only.
  */
 export function CapabilityStage({
   kind,
