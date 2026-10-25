@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { zeonEngineering } from "@/lib/zeonai/content";
 import { gsap, registerGsap, useGSAP } from "@/lib/motion/gsap";
 import { usePrefersReducedMotion } from "@/lib/motion/reduced-motion";
+import { motion } from "@/lib/motion/tokens";
 import { AccessVisual } from "./AccessVisual";
 import { AuditVisual } from "./AuditVisual";
 import { DelegationVisual } from "./DelegationVisual";
@@ -74,10 +75,10 @@ export function Engineering() {
       const overviewLines = root.querySelectorAll("[data-eng-overview-line]");
       gsap.from(overview, {
         opacity: 0,
-        y: 14,
-        stagger: 0.05,
-        duration: 0.5,
-        ease: "power2.out",
+        y: motion.distance.micro + 4,
+        stagger: motion.stagger.tight,
+        duration: motion.duration.micro + 0.22,
+        ease: motion.easeSoft,
         scrollTrigger: {
           trigger: root.querySelector(".aid-eng-overview"),
           start: "top 82%",
@@ -106,10 +107,10 @@ export function Engineering() {
         const lines = chapter.querySelectorAll("[data-eng-line]");
         gsap.from(chapter.querySelectorAll(".aid-eng-chapter-copy > *"), {
           opacity: 0,
-          y: 16,
-          stagger: 0.06,
-          duration: 0.48,
-          ease: "power2.out",
+          y: motion.distance.text - 6,
+          stagger: motion.stagger.tight,
+          duration: motion.duration.micro + 0.2,
+          ease: motion.easeSoft,
           scrollTrigger: {
             trigger: chapter,
             start: "top 78%",
@@ -118,10 +119,10 @@ export function Engineering() {
         });
         gsap.from(stages, {
           opacity: 0,
-          y: 10,
+          y: motion.distance.micro,
           stagger: 0.045,
-          duration: 0.42,
-          ease: "power2.out",
+          duration: motion.duration.micro + 0.14,
+          ease: motion.easeSoft,
           scrollTrigger: {
             trigger: chapter,
             start: "top 72%",
@@ -165,7 +166,7 @@ export function Engineering() {
           <p className="aid-eng-lead">{zeonEngineering.lead}</p>
         </header>
 
-        <nav className="aid-eng-overview" aria-label="Architecture overview">
+        <nav className="aid-eng-overview" aria-label="Engineering overview">
           <ol className="aid-eng-overview-list">
             {pieces.map((piece, i) => (
               <li key={piece.num} data-eng-overview-item>

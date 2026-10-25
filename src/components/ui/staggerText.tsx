@@ -1,6 +1,8 @@
-'use client'
+"use client";
+
 import React from "react";
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/lib/motion/reduced-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -31,6 +33,8 @@ const TextAnimation = ({
   delay?: number;
   divideBy?: "word" | "letter";
 }) => {
+  const reduced = usePrefersReducedMotion();
+
   if (typeof children !== "string") {
     if (typeof children === "number" || typeof children === "boolean") {
       children = String(children);
@@ -41,8 +45,12 @@ const TextAnimation = ({
   }
 
   const text = children as string;
-  const parts =
-    divideBy === "letter" ? text.split("") : text.split(" ");
+
+  if (reduced) {
+    return <span style={{ display: "inline-block" }}>{text}</span>;
+  }
+
+  const parts = divideBy === "letter" ? text.split("") : text.split(" ");
   const stagger = divideBy === "letter" ? 0.02 : 0.05;
 
   return (

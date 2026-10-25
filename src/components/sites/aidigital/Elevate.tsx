@@ -216,7 +216,7 @@ export function Elevate() {
             </ul>
             <a
               href="#book-a-demo"
-              className="aid-btn aid-btn-blue mt-6 inline-flex"
+              className="aid-btn aid-btn-lime mt-6 inline-flex"
             >
               Book a demo
             </a>

@@ -244,6 +244,12 @@ export function Customers() {
             </p>
           </div>
         </div>
+
+        <p className="aid-cust-cta">
+          <a href="#book-a-demo" className="aid-btn aid-btn-lime">
+            Book a demo
+          </a>
+        </p>
       </div>
     </section>
   );
