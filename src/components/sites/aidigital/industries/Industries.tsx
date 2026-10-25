@@ -127,8 +127,9 @@ export function Industries() {
           id: "industries-pin",
           trigger: root,
           start: "top top",
+          /* 0.48vh/sector — shorter pin budget without losing scrub readability */
           end: () =>
-            `+=${Math.round(window.innerHeight * sectors.length * 0.72)}`,
+            `+=${Math.round(window.innerHeight * sectors.length * 0.48)}`,
           pin: stage,
           pinSpacing: true,
           scrub: 0.55,

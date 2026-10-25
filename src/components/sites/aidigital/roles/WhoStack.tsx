@@ -40,6 +40,16 @@ function bury(eased: number) {
   };
 }
 
+function setBuriedA11y(el: HTMLElement, buried: boolean) {
+  if (buried) {
+    el.setAttribute("aria-hidden", "true");
+    el.setAttribute("inert", "");
+  } else {
+    el.removeAttribute("aria-hidden");
+    el.removeAttribute("inert");
+  }
+}
+
 function applyBury(
   el: HTMLElement,
   state: ReturnType<typeof bury> | null,
@@ -52,6 +62,7 @@ function applyBury(
     el.style.transform = extraYpx ? `translate3d(0, ${extraYpx}px, 0)` : "none";
     el.style.visibility = "visible";
     el.style.pointerEvents = "";
+    setBuriedA11y(el, false);
     return;
   }
 
@@ -65,6 +76,7 @@ function applyBury(
   el.style.filter = `brightness(${state.brightness.toFixed(3)}) blur(${state.blur.toFixed(2)}px)`;
   el.style.visibility = state.opacity < 0.02 ? "hidden" : "visible";
   el.style.pointerEvents = state.opacity < 0.15 ? "none" : "";
+  setBuriedA11y(el, state.opacity < 0.15);
 }
 
 /**
@@ -117,6 +129,7 @@ export function WhoStack({ children }: { children: React.ReactNode }) {
         el.style.visibility = "";
         el.style.pointerEvents = "";
         el.style.transformOrigin = "";
+        setBuriedA11y(el, false);
       }
     };
 

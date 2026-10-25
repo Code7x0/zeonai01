@@ -8,8 +8,11 @@ import { ZeonNavbar } from "./ZeonNavbar";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="aidigital min-h-screen">
+      <a href="#main-content" className="aid-skip-link">
+        Skip to content
+      </a>
       <ZeonNavbar />
-      {children}
+      <div id="main-content">{children}</div>
     </div>
   );
 }

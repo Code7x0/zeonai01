@@ -92,6 +92,29 @@
   text-decoration: none;
 }
 
+/* Keyboard-first entry — visible on focus only */
+.aid-skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: var(--aid-black);
+  color: var(--aid-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.aid-skip-link:focus,
+.aid-skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--aid-lime);
+  outline-offset: 2px;
+}
+
 .aidigital img {
   max-width: 100%;
   height: auto;
@@ -3114,7 +3137,8 @@
 
 @media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
   .aid-architecture .aid-arch-pin-track {
-    min-height: 275vh;
+    /* Was 275vh — trim scroll tax while keeping explode storytelling */
+    min-height: 210vh;
   }
 
   .aid-architecture .aid-arch-pin-stage {
@@ -6343,6 +6367,12 @@
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
   color: var(--aid-grey);
+}
+
+.aid-cust-cta {
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+  display: flex;
+  justify-content: flex-start;
 }
 
 @media (prefers-reduced-motion: reduce) {

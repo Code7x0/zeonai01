@@ -27,6 +27,13 @@ export function CastRenderCenter() {
     const root = rootRef.current;
     if (!clip || !root) return;
 
+    if (reduced) {
+      clip.pause();
+      clip.removeAttribute("src");
+      clip.load();
+      return;
+    }
+
     let started = false;
     let raf = 0;
 

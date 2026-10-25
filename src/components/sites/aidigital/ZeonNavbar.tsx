@@ -84,6 +84,12 @@ export function ZeonNavbar() {
         className={`aid-nav${scrolled ? " is-scrolled" : ""}${showNav ? " is-visible" : " is-hidden"}`}
         onMouseEnter={() => setHot(true)}
         onMouseLeave={() => setHot(false)}
+        onFocusCapture={() => setHot(true)}
+        onBlurCapture={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+            setHot(false);
+          }
+        }}
       >
         <div className="aid-nav-inner">
           <div className="aid-home-container flex min-h-20 items-center justify-between gap-4 py-3">
