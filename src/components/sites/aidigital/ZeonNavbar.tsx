@@ -101,12 +101,12 @@ export function ZeonNavbar() {
               <ZeonLogo />
             </Link>
 
-            <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+            <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main">
               {zeonNav.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="px-2 py-2 text-[0.93rem] font-medium text-[var(--aid-blue)] xl:px-3"
+                  className="aid-nav-link xl:!px-3"
                 >
                   {item.label}
                 </a>
@@ -126,7 +126,7 @@ export function ZeonNavbar() {
               </a>
               <button
                 type="button"
-                className="relative z-[1] flex h-10 w-10 items-center justify-center rounded-full border border-[var(--aid-blue)]/20 text-[var(--aid-blue)] lg:hidden"
+                className="aid-nav-menu-btn relative z-[1] flex h-11 w-11 items-center justify-center rounded-full border border-[var(--aid-blue)]/25 text-[var(--aid-blue)] lg:hidden"
                 aria-label="menu"
                 aria-expanded={mobileOpen}
                 onClick={() => setMobileOpen((v) => !v)}
@@ -157,7 +157,7 @@ export function ZeonNavbar() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="rounded-lg px-3 py-3 text-[0.95rem] font-medium text-[var(--aid-blue)]"
+                    className="rounded-lg px-3 py-3.5 text-[0.98rem] font-medium text-[var(--aid-blue)] transition-colors hover:bg-[color-mix(in_oklab,var(--aid-blue)_7%,transparent)]"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}

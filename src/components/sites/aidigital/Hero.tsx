@@ -30,17 +30,14 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="mx-auto -mt-6 flex max-w-[720px] flex-col items-center gap-4 text-center md:-mt-10 md:gap-5">
+          <div className="aid-hero-copy mx-auto -mt-6 flex max-w-[720px] flex-col items-center gap-4 text-center md:-mt-10 md:gap-5">
             <h1 className="font-[family-name:var(--aid-font-heading)] text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] font-black text-[var(--aid-blue)] normal-case">
               <TextAnimation divideBy="word">
                 {zeonPlatform.title}
               </TextAnimation>
             </h1>
-            <span
-              aria-hidden
-              className="h-1 w-16 rounded-full bg-[var(--aid-blue)]"
-            />
-            <p className="max-w-[640px] text-[0.9375rem] leading-[1.45] text-[var(--aid-ink)] md:text-base md:leading-[1.5]">
+            <span aria-hidden className="aid-hero-rule" />
+            <p className="max-w-[640px] text-[0.9375rem] leading-[1.55] text-[var(--aid-ink)] md:text-base md:leading-[1.55]">
               {zeonPlatform.body}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
