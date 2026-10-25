@@ -144,13 +144,13 @@
 .aid-btn-lime,
 .aidigital a.aid-btn-lime {
   background: var(--aid-black);
-  color: var(--aid-blue);
+  color: var(--aid-white);
 }
 
 .aid-btn-lime:hover,
 .aidigital a.aid-btn-lime:hover {
   background: color-mix(in oklab, var(--aid-black) 82%, var(--aid-white));
-  color: var(--aid-blue);
+  color: var(--aid-white);
 }
 
 .aid-btn-outline-white,
