@@ -458,17 +458,131 @@ export const zeonEngineering = {
   ],
 } as const;
 
+/**
+ * 06 · Governance — structured from preview #trust
+ * (zeonai-website-preview.vercel.app).
+ */
 export const zeonTrust = {
   id: "trust",
   eyebrow: "06 · Governance",
   title: "Governed by design, not added afterwards",
   lead: "Access control, human review and an audit log are built into every part of AI Workspace, from the first search to the record posted in your ERP.",
   accessTitle: "Access you control",
-  points: [
-    "Admin defines roles — set up the roles your teams need, once.",
-    "Roles map to modules — each role gets only the modules it needs.",
-    "People see only what their role allows — access is checked before anything is retrieved.",
+  accessSteps: [
+    {
+      n: "1",
+      title: "Admin defines roles",
+      body: "Set up the roles your teams need, once.",
+    },
+    {
+      n: "2",
+      title: "Roles map to modules",
+      body: "Each role gets only the modules it needs.",
+    },
+    {
+      n: "3",
+      title: "People see only what their role allows",
+      body: "Access is checked before anything is retrieved.",
+    },
   ],
+  /** Illustrative samples — not customer data */
+  modules: [
+    "Agent Hub",
+    "Workflows",
+    "Dashboard",
+    "AI Drive",
+    "Ask AI",
+    "AI Dashboards",
+    "Notifications",
+    "Search",
+    "Contract Intelligence",
+  ] as const,
+  roles: {
+    finance: {
+      id: "finance" as const,
+      label: "Finance",
+      open: [
+        "Agent Hub",
+        "Workflows",
+        "Dashboard",
+        "AI Drive",
+        "Ask AI",
+      ] as const,
+    },
+    executive: {
+      id: "executive" as const,
+      label: "Executive",
+      open: [
+        "Dashboard",
+        "Ask AI",
+        "AI Dashboards",
+        "Notifications",
+      ] as const,
+    },
+  },
+  roleNote: "Roles shown are examples, not customer data.",
+  audit: {
+    path: "AI Workspace / Admin / Audit trail",
+    sampleLabel: "Sample data",
+    title: "audit-trail",
+    status: "today, read only",
+    ariaLabel:
+      "Audit trail sample: a question, the access check, two documents withheld because they were outside the user's access, an answer with two cited sources, and an export.",
+    sets: [
+      {
+        id: "capital",
+        activeIndex: 1,
+        entries: [
+          {
+            meta: "09:14:02 · finance.manager",
+            body: "Asked about capital spend approvals",
+          },
+          {
+            meta: "09:14:02 · access.check",
+            body: "Role and sensitivity rules applied",
+          },
+          {
+            meta: "09:14:03 · retrieval",
+            body: "2 documents withheld: outside access",
+          },
+          {
+            meta: "09:14:04 · answer",
+            body: "Answered with 2 cited sources",
+          },
+          {
+            meta: "09:16:40 · finance.manager",
+            body: "Exported the cited answer",
+          },
+        ],
+      },
+      {
+        id: "invoice",
+        activeIndex: 2,
+        entries: [
+          {
+            meta: "10:02:11 · operations.head",
+            body: "Opened supplier invoice exception",
+          },
+          {
+            meta: "10:02:11 · access.check",
+            body: "Role and sensitivity rules applied",
+          },
+          {
+            meta: "10:02:14 · retrieval",
+            body: "1 attachment withheld: outside access",
+          },
+          {
+            meta: "10:02:18 · answer",
+            body: "Suggested match with 1 cited source",
+          },
+          {
+            meta: "10:05:02 · operations.head",
+            body: "Approved the exception for posting",
+          },
+        ],
+      },
+    ],
+  },
   securityTitle: "Enterprise-grade security and compliance",
   securityLead:
     "Upholding strict data security and privacy standards is at the core of everything we do.",
@@ -514,12 +628,17 @@ export const zeonTrust = {
   ],
 } as const;
 
+export type ZeonTrustRoleId = keyof typeof zeonTrust.roles;
+
 export const zeonIndustries = {
   id: "industries",
+  eyebrow: "04 · Industries",
   title: "Built for regulated, document-heavy sectors",
   lead: "The same platform, with agents built for each sector. Examples from our agent portfolio.",
+  sourcePage: "https://zeonai-website-preview.vercel.app/#industries",
   sectors: [
     {
+      id: "financial-services",
       title: "Financial services and lending",
       body: "Faster, better-documented credit decisions without adding headcount.",
       runsOn: "AI Workspace · Agent Hub",
@@ -529,23 +648,28 @@ export const zeonIndustries = {
           name: "Mortgage application automation",
           detail:
             "Reads application packs and checks them against lending policy.",
+          visual: "doc-pack" as const,
         },
         {
           name: "AI underwriting",
           detail:
             "Assembles the evidence an underwriter needs into one view.",
+          visual: "evidence" as const,
         },
         {
           name: "KYC intelligence",
           detail: "Extracts and verifies identity and entity details.",
+          visual: "identity" as const,
         },
         {
           name: "Credit memo generation",
           detail: "Drafts the credit memo from verified data for review.",
+          visual: "memo" as const,
         },
       ],
     },
     {
+      id: "superannuation",
       title: "Superannuation and finance",
       body: "Clean payables and reconciliations, with an audit trail for every exception.",
       runsOn: "AI Workspace · Agent Hub",
@@ -555,24 +679,29 @@ export const zeonIndustries = {
           name: "Invoice processing and 3-way match",
           detail:
             "Matches invoices to purchase orders and goods receipts.",
+          visual: "three-way" as const,
         },
         {
           name: "E-batch and payment reconciliation",
           detail: "Reconciles payment batches against bank records.",
+          visual: "reconcile" as const,
         },
         {
           name: "Fund analysis",
           detail:
             "Summarises fund data for investment and board reporting.",
+          visual: "fund" as const,
         },
         {
           name: "Bank-ERP reconciliation",
           detail:
             "Matches bank records to the ledger and flags the differences for review.",
+          visual: "match" as const,
         },
       ],
     },
     {
+      id: "media",
       title: "Media and publishing",
       body: "More output from the same newsroom, with checks before anything is published.",
       runsOn: "AI Workspace · Core",
@@ -581,22 +710,27 @@ export const zeonIndustries = {
         {
           name: "Topic summary and insight",
           detail: "Condenses coverage and research into a briefing.",
+          visual: "brief" as const,
         },
         {
           name: "Fact check",
           detail: "Flags claims that need a source before publication.",
+          visual: "factcheck" as const,
         },
         {
           name: "AI audio",
           detail: "Turns written stories into audio versions.",
+          visual: "audio" as const,
         },
         {
           name: "Topic and article search",
           detail: "Finds related coverage across the archive.",
+          visual: "search" as const,
         },
       ],
     },
     {
+      id: "government",
       title: "Government and public sector",
       body: "Answers from policy and data, with access controls that match the classification.",
       runsOn: "AI Workspace · Core and Agent Hub",
@@ -605,23 +739,28 @@ export const zeonIndustries = {
         {
           name: "Generative search and policy questions",
           detail: "Answers policy questions with citations to the source.",
+          visual: "cite" as const,
         },
         {
           name: "Financial analysis",
           detail: "Analyses budget and expenditure data on request.",
+          visual: "fund" as const,
         },
         {
           name: "Geospatial analysis",
           detail: "Brings location data into reports and decisions.",
+          visual: "geo" as const,
         },
         {
           name: "Secure knowledge discovery",
           detail:
             "Searches restricted archives within each user's clearance.",
+          visual: "clearance" as const,
         },
       ],
     },
     {
+      id: "defence",
       title: "Defence",
       body: "Knowledge discovery for classified environments, deployed on your own infrastructure.",
       runsOn: "AI Workspace · Core",
@@ -630,23 +769,28 @@ export const zeonIndustries = {
         {
           name: "Secure knowledge discovery",
           detail: "Finds what personnel need within their clearance.",
+          visual: "clearance" as const,
         },
         {
           name: "Classified document questions",
           detail:
             "Answers questions on restricted documents, with citations.",
+          visual: "classified" as const,
         },
         {
           name: "Access-controlled search",
           detail: "Search that enforces need-to-know on every result.",
+          visual: "access-search" as const,
         },
         {
           name: "SOP and doctrine management",
           detail: "Keeps procedures current, versioned and searchable.",
+          visual: "sop" as const,
         },
       ],
     },
     {
+      id: "metals",
       title: "Metals and manufacturing",
       body: "Less paperwork between the plant floor and the finance team.",
       runsOn: "AI Workspace · Agent Hub",
@@ -655,67 +799,181 @@ export const zeonIndustries = {
         {
           name: "Vendor invoice processing",
           detail: "Captures and validates vendor invoices for posting.",
+          visual: "doc-pack" as const,
         },
         {
           name: "EHS injury and incident analysis",
           detail: "Finds patterns in safety reports to prevent repeats.",
+          visual: "ehs" as const,
         },
         {
           name: "Data migration reconciliation",
           detail: "Checks migrated records against the source system.",
+          visual: "migrate" as const,
         },
         {
           name: "Invoice and PO 2-way matching",
           detail:
             "Matches vendor invoices to purchase orders and routes mismatches to the right person.",
+          visual: "two-way" as const,
         },
       ],
     },
   ],
 } as const;
 
+export type ZeonIndustrySector = (typeof zeonIndustries.sectors)[number];
+export type ZeonIndustryAgent = ZeonIndustrySector["agents"][number];
+export type ZeonIndustryVisual = ZeonIndustryAgent["visual"];
+
+/** Module catalogue for role setups (preview #who). */
+export const zeonRoleModules = [
+  { id: "ask-ai", name: "Ask AI" },
+  { id: "search", name: "Search" },
+  { id: "notifications", name: "Notifications" },
+  { id: "ai-drive", name: "AI Drive" },
+  { id: "ai-dashboard", name: "AI Dashboards" },
+  { id: "workflows", name: "Workflows" },
+  { id: "contract-intelligence", name: "Contract Intelligence" },
+  { id: "app-hub", name: "App Hub" },
+  { id: "quote-builder", name: "Quote Management" },
+  { id: "opportunity", name: "Opportunity Management" },
+  { id: "dashboard", name: "Dashboard" },
+  { id: "agent-hub", name: "Agent Hub" },
+] as const;
+
+/**
+ * Role setups from preview #who radios
+ * (`data-modules` / `data-agents` on zeonai-website-preview).
+ */
 export const zeonRoles = {
   id: "roles",
+  /** Preview section id alias */
+  anchorId: "who",
   title: "Who are you?",
   lead: "Pick your role. The modules and agents set up for it light up, and the rest stay off. Start with what you need, add more later.",
-  roles: [
-    "Finance manager",
-    "Legal and contracts lead",
-    "Procurement and tenders lead",
-    "Compliance and KYC officer",
-    "Operations head",
-    "Credit analyst",
-  ],
-  customCta: "Your team, your workflow — tell us your function and we'll show the fit",
-  sample: {
-    role: "Finance manager",
-    summary: "Set up for Finance manager: 6 of 12 modules",
-    modules: [
-      { name: "Ask AI", status: "Included" },
-      { name: "Search", status: "Not needed" },
-      { name: "Notifications", status: "Included" },
-      { name: "AI Drive", status: "Included" },
-      { name: "AI Dashboards", status: "Not needed" },
-      { name: "Workflows", status: "Included" },
-      { name: "Contract Intelligence", status: "Not needed" },
-      { name: "App Hub", status: "Not needed" },
-      { name: "Quote Management", status: "Not needed" },
-      { name: "Opportunity Management", status: "Not needed" },
-      { name: "Dashboard", status: "Included" },
-      { name: "Agent Hub", status: "Included" },
-    ],
-    agents: [
-      "InvoiceAI",
-      "Bank and ERP reconciliation",
-      "Budget variance review",
-    ],
+  chooseLabel: "Choose one",
+  customCta: {
+    title: "Your team, your workflow",
+    body: "Tell us your function and we'll show the fit",
+    href: "#book-a-demo",
   },
+  cta: {
+    label: "Book a demo with these modules",
+    href: "#book-a-demo",
+  },
+  footnote: "Start with what you need, add more later.",
+  roles: [
+    {
+      id: "finance",
+      label: "Finance manager",
+      modules: [
+        "ask-ai",
+        "ai-drive",
+        "agent-hub",
+        "workflows",
+        "dashboard",
+        "notifications",
+      ],
+      agents: [
+        "InvoiceAI",
+        "Bank and ERP reconciliation",
+        "Budget variance review",
+      ],
+    },
+    {
+      id: "legal",
+      label: "Legal and contracts lead",
+      modules: [
+        "ask-ai",
+        "ai-drive",
+        "contract-intelligence",
+        "search",
+        "workflows",
+        "notifications",
+      ],
+      agents: ["Policy attestation tracker", "Regulatory change summary"],
+    },
+    {
+      id: "procurement",
+      label: "Procurement and tenders lead",
+      modules: [
+        "ask-ai",
+        "ai-drive",
+        "agent-hub",
+        "workflows",
+        "opportunity",
+        "quote-builder",
+        "dashboard",
+      ],
+      agents: [
+        "Purchase order matching",
+        "Supplier onboarding check",
+        "Goods receipt matching",
+      ],
+    },
+    {
+      id: "compliance",
+      label: "Compliance and KYC officer",
+      modules: [
+        "ask-ai",
+        "search",
+        "ai-drive",
+        "agent-hub",
+        "workflows",
+        "notifications",
+      ],
+      agents: [
+        "KYC intelligence",
+        "Sanctions screening review",
+        "Beneficial ownership check",
+      ],
+    },
+    {
+      id: "operations",
+      label: "Operations head",
+      modules: [
+        "app-hub",
+        "ask-ai",
+        "search",
+        "workflows",
+        "dashboard",
+        "notifications",
+      ],
+      agents: [
+        "Work order triage",
+        "Shift handover summary",
+        "Incident log analysis",
+      ],
+    },
+    {
+      id: "credit",
+      label: "Credit analyst",
+      modules: [
+        "ask-ai",
+        "ai-drive",
+        "agent-hub",
+        "workflows",
+        "ai-dashboard",
+        "search",
+      ],
+      agents: ["CashfloAI", "AI underwriting", "Credit memo generation"],
+    },
+  ],
 } as const;
 
+export type ZeonRole = (typeof zeonRoles.roles)[number];
+
+/**
+ * Customers / case studies — structured from preview #customers carousel
+ * (zeonai-website-preview.vercel.app).
+ */
 export const zeonCustomers = {
   id: "customers",
+  eyebrow: "05 · Customers",
   title: "Customers and case studies",
   lead: "Real deployments across lending, finance and media, with the results each one delivered.",
+  intervalMs: 7000,
   cases: [
     {
       href: "#customers",
@@ -724,6 +982,18 @@ export const zeonCustomers = {
       title: "Mortgage application automation",
       meta: "Australian credit asset management firm",
       detail: "70%+ reduction in manual effort · 30,000+ documents a month",
+      metric: {
+        value: "70%+",
+        label: "reduction in manual effort on loan application forms",
+        context:
+          "Multi-page loan application forms, 30,000+ documents a month, 10,000+ users onboarded",
+      },
+      results: [
+        "30,000+ documents a month",
+        "10,000+ users onboarded",
+        "70% cut in processing time",
+      ],
+      products: ["DocAI", "AI Workspace · Agent Hub"],
       challenge:
         "Multi-page loan application forms took extensive manual effort to extract and validate, which led to inefficiencies and potential errors.",
       deployed:
@@ -738,6 +1008,17 @@ export const zeonCustomers = {
       title: "Billing agent",
       meta: "Lending bank in the US",
       detail: "80% reduction in manual partner billing · 99%+ accuracy",
+      metric: {
+        value: "80%",
+        label: "reduction in manual processing of partner billing",
+        context: "Monthly partner fee calculations, 8,000+ documents a month",
+      },
+      results: [
+        "8,000+ documents a month",
+        "99%+ accuracy",
+        "60% faster partner payments",
+      ],
+      products: ["InvoiceAI", "AI Workspace · Agent Hub"],
       challenge:
         "Monthly partner fee calculations across several fee types were done by hand with SQL queries and Excel templates.",
       deployed:
@@ -748,10 +1029,21 @@ export const zeonCustomers = {
     {
       href: "#customers",
       image: "/sites/aidigital/articles/attribution.webp",
-      category: "Superannuation",
+      category: "Superannuation and finance",
       title: "Financial operations intelligence",
       meta: "Leading superannuation fund",
       detail: "80–85% reduction in daily receipting time",
+      metric: {
+        value: "80-85%",
+        label: "reduction in daily receipting time",
+        context: "Daily bank statement receipting, 5,000+ documents a month",
+      },
+      results: [
+        "5,000+ documents a month",
+        "99%+ matching accuracy",
+        "Exceptions reviewed by people",
+      ],
+      products: ["Reconciliation agent", "AI Workspace · Agent Hub"],
       challenge:
         "Receipting meant identifying employer deposits on daily bank statements by hand and preparing batches in spreadsheets, passed between receipting officers by email.",
       deployed:
@@ -766,6 +1058,17 @@ export const zeonCustomers = {
       title: "AI Workspace for content intelligence",
       meta: "Leading Australian media agency",
       detail: "20–28% lower operating cost · errors under 1%",
+      metric: {
+        value: "20-28%",
+        label: "lower operating cost",
+        context: "High-volume text and audio content, 5,000+ documents a month",
+      },
+      results: [
+        "Errors down from 20% to under 1%",
+        "5x more customers served",
+        "No added headcount",
+      ],
+      products: ["AI Workspace", "DocAI"],
       challenge:
         "Manual processes could not synthesise large volumes of content, leaving information gaps and outdated reports. Keyword search missed context, and manual summaries were costly and subjective.",
       deployed:
@@ -816,18 +1119,24 @@ export const zeonDemo = {
 
 export const zeonOffices = [
   {
+    id: "india",
     title: "India Office",
+    country: "India",
     address:
       "Neeladri Vihar, Chandrasekharpur, Bhubaneswar, Odisha 751021",
     map: "https://maps.google.com/?q=Neeladri+Vihar+Bhubaneswar",
   },
   {
+    id: "uae",
     title: "UAE Office",
+    country: "United Arab Emirates",
     address: "Meydan Grandstand area, Dubai",
     map: "https://maps.google.com/?q=Meydan+Grandstand+Dubai",
   },
   {
+    id: "canada",
     title: "Canada Office",
+    country: "Canada",
     address: "180 Howden Blvd, Brampton, ON L6S 0E6",
     map: "https://maps.google.com/?q=180+Howden+Blvd+Brampton",
   },

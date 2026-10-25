@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Footer } from "@/components/sites/aidigital/Footer";
 import { zeonMeta, zeonPrivacy } from "@/lib/zeonai/content";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
+    <>
     <main className="bg-[var(--aid-bg)] pt-28 pb-20">
       <div className="aid-container max-w-3xl">
         <p className="mb-3 text-sm font-semibold tracking-wide text-[var(--aid-blue)] uppercase">
@@ -58,5 +60,7 @@ export default function PrivacyPolicyPage() {
         </Link>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }
