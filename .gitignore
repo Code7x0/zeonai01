@@ -24,6 +24,7 @@ yarn-error.log*
 # IDE
 .idea/
 .vscode/
+.cursor/mcp.json
 *.swp
 *.swo
 
@@ -47,3 +48,10 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Locally cloned external design-skill packs (not shipped with the site)
+.agents/skills/impeccable/
+.agents/skills/taste-skill/
+.agents/skills/ui-ux-pro-max-skill/
+.agents/skills/skills/
+.agents/skills/awesome-design-md/

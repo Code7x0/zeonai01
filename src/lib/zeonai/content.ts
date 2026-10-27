@@ -22,8 +22,9 @@ export const zeonMeta = {
 
 export const zeonNav = [
   { label: "Platform", href: "#platform" },
+  { label: "Products", href: "#products" },
+  { label: "Workspace", href: "#showcase" },
   { label: "Industries", href: "#industries" },
-  { label: "Customers", href: "#customers" },
   { label: "Trust", href: "#trust" },
 ] as const;
 
@@ -586,10 +587,10 @@ export const zeonTrust = {
   securityTitle: "Enterprise-grade security and compliance",
   securityLead:
     "Upholding strict data security and privacy standards is at the core of everything we do.",
+  /** As published on zeonai.com — confirm current scope before procurement. */
   certifications: [
-    { name: "SOC 2", detail: "Compliance" },
-    { name: "ISO 27001", detail: "Information security management" },
-    { name: "GDPR", detail: "GDPR-ready systems" },
+    { name: "SOC 2 Type I & II", detail: "As published by ZeonAI" },
+    { name: "ISO 27001", detail: "As published by ZeonAI" },
   ],
   securityPoints: [
     {
@@ -606,7 +607,7 @@ export const zeonTrust = {
     },
     {
       title: "Legal archiving",
-      body: "Compliant data retention and GDPR-ready systems.",
+      body: "Compliant data retention and archiving for regulated environments.",
     },
     {
       title: "Disaster recovery",

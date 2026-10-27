@@ -1,0 +1,145 @@
+/* Hallmark tokens — warm paper ground + DeepProbe accents · redesign: restyle */
+@theme static {
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-display-s: clamp(2rem, 3.5vw + 0.5rem, 3.25rem);
+  --text-display: clamp(2.5rem, 4.5vw + 0.75rem, 4.5rem);
+  --text-section: clamp(1.75rem, 2vw + 0.9rem, 2.75rem);
+  --text-title: clamp(1.125rem, 0.5vw + 0.95rem, 1.375rem);
+  --text-lead: clamp(1.0625rem, 0.25vw + 1rem, 1.25rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Warm paper kept; DeepProbe for brand roles */
+  --color-paper: #faf7f2;
+  --color-paper-2: #f4f0e8;
+  --color-paper-3: #ede9e1;
+  --color-ink: #181d27;
+  --color-ink-2: #252b37;
+  --color-muted: #535862;
+  --color-rule: #e8e4da;
+  --color-accent: #1b46f5;
+  --color-accent-ink: #ffffff;
+  --color-focus: #5991ff;
+  --color-error: #d92d20;
+  --color-success: #079455;
+
+  --font-display: var(--font-newsreader), "Newsreader", Georgia, serif;
+  --font-body: var(--font-geist-sans), "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --shadow-card: 0 12px 32px -16px color-mix(in oklab, #181d27 14%, transparent);
+  --tracking-display: -0.03em;
+  --display-weight: 400;
+}
+
+:root {
+  /* DeepProbe primitives (authoritative) */
+  --dp-blue-50: #eef4ff;
+  --dp-blue-100: #d9e6ff;
+  --dp-blue-200: #bcd3ff;
+  --dp-blue-300: #8eb8ff;
+  --dp-blue-400: #5991ff;
+  --dp-blue-500: #2962ff;
+  --dp-blue-600: #1b46f5;
+  --dp-blue-700: #1433e1;
+  --dp-blue-800: #172ab6;
+  --dp-blue-900: #192a8f;
+  --dp-gray-50: #fafafa;
+  --dp-gray-100: #f5f5f5;
+  --dp-gray-200: #e9eaeb;
+  --dp-gray-300: #d5d7da;
+  --dp-gray-400: #a4a7ae;
+  --dp-gray-500: #717680;
+  --dp-gray-600: #535862;
+  --dp-gray-700: #414651;
+  --dp-gray-800: #252b37;
+  --dp-gray-900: #181d27;
+  --dp-green-50: #ecfdf3;
+  --dp-green-500: #17b26a;
+  --dp-green-600: #079455;
+  --dp-amber-50: #fffaeb;
+  --dp-amber-500: #f79009;
+  --dp-red-50: #fef3f2;
+  --dp-red-500: #f04438;
+  --dp-red-600: #d92d20;
+  --dp-teal-500: #15b79e;
+  --dp-teal-600: #0e9384;
+  --dp-indigo-500: #6172f3;
+  --dp-white: #ffffff;
+  --dp-logo-start: #0025ff;
+  --dp-logo-end: #05a1fd;
+  --dp-gradient-brand: linear-gradient(90deg, var(--dp-logo-start), var(--dp-logo-end));
+
+  --color-bg-default: var(--dp-white);
+  --color-bg-subtle: var(--dp-gray-50);
+  --color-bg-muted: var(--dp-gray-100);
+  --color-bg-brand-subtle: var(--dp-blue-50);
+  --color-bg-inverse: var(--dp-gray-900);
+  --color-text-heading: var(--dp-gray-900);
+  --color-text-body: var(--dp-gray-600);
+  --color-text-muted: var(--dp-gray-500);
+  --color-text-on-brand: var(--dp-white);
+  --color-text-link: var(--dp-blue-700);
+  --color-border-default: var(--dp-gray-200);
+  --color-border-strong: var(--dp-gray-300);
+  --color-action: var(--dp-blue-600);
+  --color-action-hover: var(--dp-blue-700);
+  --color-brand: var(--dp-blue-500);
+
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --container: 1120px;
+  --gutter: 40px;
+  --gap-columns: 32px;
+  --section-gap-s: 88px;
+  --section-gap: 112px;
+  --section-gap-l: 144px;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+  --rule-hair: 1px;
+  --rule-bar: 1px;
+}
+
+@media (max-width: 60rem) {
+  :root {
+    --gutter: 24px;
+    --section-gap-s: 64px;
+    --section-gap: 80px;
+    --section-gap-l: 104px;
+  }
+}
+
+@media (max-width: 40rem) {
+  :root {
+    --gutter: 16px;
+    --section-gap-s: 48px;
+    --section-gap: 64px;
+    --section-gap-l: 80px;
+    --gap-columns: 16px;
+  }
+}

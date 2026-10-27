@@ -1,4 +1,4 @@
-import { SiteShell } from "@/components/sites/aidigital/SiteShell";
+import { SiteShell } from "@/components/sites/zeon/SiteShell";
 
 export default function SiteLayout({
   children,

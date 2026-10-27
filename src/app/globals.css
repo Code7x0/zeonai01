@@ -1,15 +1,44 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "./tokens.css";
+
+/* Ensure Stitch markup string classes are generated */
+@source "../components/sites/zeon/stitch/**/*.{ts,tsx,css}";
+@source inline("hidden flex flex-col items-center justify-center");
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Warm Cohere paper ground + DeepProbe brand accents
+     (https://deepprobe-colours.netlify.app/) — layout unchanged */
+  --color-paper: #faf7f2;
+  --color-paper-subtle: #f4f0e8;
+  --color-paper-card: #ffffff;
+  --color-border-sand: #e8e4da;
+  --color-border-subtle: #ede9e1;
+  --color-text-ink: #181d27;
+  --color-text-muted: #535862;
+  --color-text-faint: #717680;
+  --color-obsidian: #181d27;
+  --color-obsidian-card: #252b37;
+  --color-emerald-botanical: #0e9384;
+  --color-emerald-deep: #1433e1;
+  --color-terracotta: #1b46f5;
+  --color-amber-cohere: #2962ff;
+  --color-sage-accent: #107569;
+  --shadow-cohere-float: 0 24px 70px -12px rgba(24, 29, 39, 0.08),
+    0 4px 18px -4px rgba(27, 70, 245, 0.06);
+  --shadow-cohere-card: 0 2px 8px -2px rgba(24, 29, 39, 0.05),
+    0 1px 3px 0 rgba(24, 29, 39, 0.02);
+  --shadow-cohere-dark: 0 30px 80px -15px rgba(24, 29, 39, 0.35);
+  --font-serif: var(--font-newsreader), "Newsreader", Georgia, serif;
+  --font-sans: var(--font-geist-sans), "Geist", -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Inter Variable", Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, monospace;
-  --font-heading: "Barlow Semi Condensed", Arial, sans-serif;
+  --font-heading: var(--font-newsreader), "Newsreader", Georgia, serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,48 +78,54 @@
 }
 
 :root {
-  --background: #f9f9f9;
-  --foreground: #26263a;
-  --card: #fff;
-  --card-foreground: #26263a;
-  --popover: #fff;
-  --popover-foreground: #26263a;
-  --primary: #0009dc;
-  --primary-foreground: #fff;
-  --secondary: #f2f3fd;
-  --secondary-foreground: #0009dc;
-  --muted: #f2f1f3;
-  --muted-foreground: #80808e;
-  --accent: #aef33e;
-  --accent-foreground: #0009dc;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #e8e8ee;
-  --input: #e8e8ee;
-  --ring: #0009dc;
+  --background: #faf7f2;
+  --foreground: #181d27;
+  --card: #ffffff;
+  --card-foreground: #181d27;
+  --popover: #ffffff;
+  --popover-foreground: #181d27;
+  --primary: #1b46f5;
+  --primary-foreground: #ffffff;
+  --secondary: #eef4ff;
+  --secondary-foreground: #1433e1;
+  --muted: #f4f0e8;
+  --muted-foreground: #535862;
+  --accent: #eef4ff;
+  --accent-foreground: #1b46f5;
+  --destructive: #d92d20;
+  --border: #e8e4da;
+  --input: #e8e4da;
+  --ring: #5991ff;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: #f9f9f9;
-  --sidebar-foreground: #26263a;
-  --sidebar-primary: #0009dc;
-  --sidebar-primary-foreground: #fff;
-  --sidebar-accent: #f2f3fd;
-  --sidebar-accent-foreground: #0009dc;
-  --sidebar-border: #e8e8ee;
-  --sidebar-ring: #0009dc;
+  --radius: 0.75rem;
+  --sidebar: #faf7f2;
+  --sidebar-foreground: #181d27;
+  --sidebar-primary: #1b46f5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef4ff;
+  --sidebar-accent-foreground: #1433e1;
+  --sidebar-border: #e8e4da;
+  --sidebar-ring: #5991ff;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: color-mix(in oklab, #1b46f5 18%, #faf7f2);
+    color: #181d27;
   }
 }

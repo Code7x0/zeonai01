@@ -31,11 +31,12 @@ export function SmoothScroll() {
     html.style.scrollBehavior = "auto";
 
     const lenis = new Lenis({
-      duration: 1.2,
+      /* Slightly snappier — deep-tech instrument feel, still smooth */
+      duration: 1.05,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.15,
-      wheelMultiplier: 0.92,
+      touchMultiplier: 1.1,
+      wheelMultiplier: 0.95,
       autoResize: true,
     });
 

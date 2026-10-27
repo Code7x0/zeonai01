@@ -1,0 +1,351 @@
+/* Hallmark · redesign: restyle · warm paper + DeepProbe accents · layout kept
+ * paper: #FAF7F2 (kept) · ink: #181D27 · CTA: #1B46F5 · brand: #2962FF · teal: #0E9384
+ * axes: warm-paper / deepprobe-blue · dashboard status colours preserved
+ * answered 46a · sample dashboard figures labelled sample · no invented customers */
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap");
+
+.zeon-stitch {
+  background-color: #faf7f2;
+  color: #181d27;
+  font-family: var(--font-geist-sans), "Geist", sans-serif;
+  overscroll-behavior: none;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.zeon-stitch .font-serif {
+  font-family: var(--font-newsreader), "Newsreader", Georgia, serif;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.zeon-stitch .font-sans {
+  font-family: var(--font-geist-sans), "Geist", -apple-system, sans-serif;
+}
+
+.zeon-stitch .font-mono {
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.zeon-stitch ::-webkit-scrollbar {
+  display: none;
+}
+
+/* ——— Type hierarchy (Cohere: light display, quiet body) ——— */
+.zeon-stitch h1.font-serif,
+.zeon-stitch h1 {
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+.zeon-stitch h2.font-serif,
+.zeon-stitch h2 {
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.zeon-stitch h3.font-serif {
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.zeon-stitch p.font-sans,
+.zeon-stitch .leading-relaxed {
+  line-height: 1.65;
+}
+
+/* ——— Spacing rhythm: air between major bands (structure unchanged) ——— */
+.zeon-stitch main > section {
+  scroll-margin-top: 5.5rem;
+}
+
+.zeon-stitch main > section.py-28 {
+  padding-block: clamp(5.5rem, 9vw, 8rem);
+}
+
+.zeon-stitch #platform {
+  padding-top: clamp(5rem, 8vw, 7.5rem);
+  padding-bottom: clamp(6rem, 10vw, 9rem);
+}
+
+/* ——— Surfaces & depth ——— */
+.zeon-stitch .bg-grid-cohere {
+  background-image: radial-gradient(rgba(27, 70, 245, 0.07) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+.zeon-stitch .blur-glow-botanical {
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(41, 98, 255, 0.11) 0%,
+    rgba(5, 161, 253, 0.07) 42%,
+    transparent 72%
+  );
+}
+
+.zeon-stitch .shadow-cohere-float {
+  box-shadow:
+    0 24px 70px -12px rgba(20, 19, 18, 0.08),
+    0 4px 18px -4px rgba(20, 19, 18, 0.04);
+}
+
+.zeon-stitch .shadow-cohere-card {
+  box-shadow:
+    0 2px 8px -2px rgba(20, 19, 18, 0.05),
+    0 1px 3px 0 rgba(20, 19, 18, 0.02);
+}
+
+/* Soften chrome: header glass on paper */
+.zeon-stitch header.sticky {
+  background-color: color-mix(in oklab, #faf7f2 88%, transparent);
+  border-bottom-color: color-mix(in oklab, #e8e4da 55%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Nav: quiet until hover (Cohere) */
+.zeon-stitch header nav a {
+  transition:
+    color 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Primary pills — DeepProbe CTA blue on warm paper */
+.zeon-stitch a.rounded-full.bg-obsidian,
+.zeon-stitch a.inline-flex.rounded-full.bg-obsidian,
+.zeon-stitch button.rounded-full.bg-obsidian {
+  background-color: #1b46f5;
+  color: #ffffff;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 10px 28px -12px rgba(27, 70, 245, 0.45);
+  transition:
+    background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zeon-stitch a.rounded-full.bg-obsidian:hover,
+.zeon-stitch a.inline-flex.rounded-full.bg-obsidian:hover,
+.zeon-stitch button.rounded-full.bg-obsidian:hover {
+  background-color: #1433e1;
+  transform: translateY(-1px);
+}
+
+.zeon-stitch header a.inline-flex[href="#book-a-demo"] {
+  background-color: #1b46f5;
+  color: #ffffff;
+  border-radius: 9999px;
+  transition:
+    background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zeon-stitch header a.inline-flex[href="#book-a-demo"]:hover {
+  background-color: #1433e1;
+  transform: translateY(-1px);
+}
+
+/* Cards: quiet edge, paper lift */
+.zeon-stitch .bg-paper-card.border,
+.zeon-stitch .rounded-xl.bg-paper-card,
+.zeon-stitch .rounded-2xl.bg-paper-card {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 2px 8px -2px rgba(20, 19, 18, 0.04),
+    0 1px 2px rgba(20, 19, 18, 0.03);
+}
+
+/* Focus — DeepProbe blue 400 */
+.zeon-stitch a:focus-visible,
+.zeon-stitch button:focus-visible,
+.zeon-stitch input:focus-visible,
+.zeon-stitch textarea:focus-visible,
+.zeon-stitch select:focus-visible {
+  outline: 2px solid #5991ff;
+  outline-offset: 2px;
+}
+
+.zeon-stitch .material-symbols-outlined {
+  font-family: "Material Symbols Outlined", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Preserve dashboard / product-mock status signal colours */
+.zeon-stitch #dashboards .text-emerald-botanical,
+.zeon-stitch #dashboards .text-emerald-400,
+.zeon-stitch #platform .bg-paper-card.grid .text-emerald-botanical,
+.zeon-stitch #platform .bg-paper-card.grid .text-emerald-400 {
+  color: #1f3a2e !important;
+}
+.zeon-stitch #dashboards .bg-emerald-botanical,
+.zeon-stitch #dashboards .bg-emerald-600,
+.zeon-stitch #platform .bg-paper-card.grid .bg-emerald-botanical,
+.zeon-stitch #platform .bg-paper-card.grid .bg-emerald-600 {
+  background-color: #1f3a2e !important;
+}
+.zeon-stitch #dashboards .text-terracotta,
+.zeon-stitch #platform .bg-paper-card.grid .text-terracotta {
+  color: #d9583b !important;
+}
+.zeon-stitch #dashboards .bg-terracotta,
+.zeon-stitch #platform .bg-paper-card.grid .bg-terracotta {
+  background-color: #d9583b !important;
+}
+.zeon-stitch #dashboards .text-amber-cohere,
+.zeon-stitch #dashboards .text-amber-900,
+.zeon-stitch #platform .bg-paper-card.grid .text-amber-cohere,
+.zeon-stitch #platform .bg-paper-card.grid .text-amber-900 {
+  color: #b54708 !important;
+}
+.zeon-stitch #dashboards .bg-amber-cohere,
+.zeon-stitch #dashboards .bg-amber-50,
+.zeon-stitch #dashboards .bg-amber-50\/60,
+.zeon-stitch #dashboards .bg-amber-100,
+.zeon-stitch #platform .bg-paper-card.grid .bg-amber-cohere,
+.zeon-stitch #platform .bg-paper-card.grid .bg-amber-50,
+.zeon-stitch #platform .bg-paper-card.grid .bg-amber-100 {
+  background-color: #fffaeb !important;
+}
+.zeon-stitch #dashboards .border-amber-200,
+.zeon-stitch #dashboards .border-amber-200\/60,
+.zeon-stitch #platform .bg-paper-card.grid .border-amber-200,
+.zeon-stitch #platform .bg-paper-card.grid .border-amber-200\/60 {
+  border-color: #fedf89 !important;
+}
+
+/* Partner logo marquee — left to right, seamless loop */
+.zeon-stitch .zn-logo-marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.zeon-stitch .zn-logo-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 3.25rem;
+  padding-inline: 1.5rem;
+  animation: zn-logo-ltr 45s linear infinite;
+  will-change: transform;
+}
+
+.zeon-stitch .zn-logo-item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  min-width: 6.5rem;
+  opacity: 0.82;
+  transition: opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zeon-stitch .zn-logo-item:hover {
+  opacity: 1;
+}
+
+.zeon-stitch .zn-logo-img {
+  display: block;
+  height: 1.75rem;
+  width: auto;
+  max-width: 7.5rem;
+  object-fit: contain;
+  filter: grayscale(0.2);
+}
+
+@keyframes zn-logo-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zeon-stitch .animate-ping,
+  .zeon-stitch .animate-spin {
+    animation: none !important;
+  }
+
+  .zeon-stitch a.rounded-full.bg-obsidian:hover,
+  .zeon-stitch header a.inline-flex[href="#book-a-demo"]:hover {
+    transform: none;
+  }
+
+  .zeon-stitch .zn-logo-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    justify-content: center;
+    row-gap: 1.25rem;
+  }
+
+  .zeon-stitch .zn-logo-track .zn-logo-item:nth-child(n + 11) {
+    display: none;
+  }
+}
+
+/* Tablet / mobile — preserve desktop composition; tighten chrome only */
+@media (max-width: 1023px) {
+  .zeon-stitch header .max-w-7xl {
+    gap: 0.75rem;
+    padding-inline: 1rem;
+  }
+
+  .zeon-stitch header .font-serif.text-\[26px\] {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .zeon-stitch header a[href="#book-a-demo"]:not(.inline-flex) {
+    display: none;
+  }
+
+  .zeon-stitch header a.inline-flex[href="#book-a-demo"] {
+    padding-inline: 0.9rem;
+    padding-block: 0.55rem;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .zeon-stitch #platform .inline-flex.items-center.gap-2 {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    row-gap: 0.35rem;
+  }
+}

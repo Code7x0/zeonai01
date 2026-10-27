@@ -1,0 +1,104 @@
+/* DeepProbe colour tokens — from the DeepProbe product theme.
+   Primitives = raw palette. Semantic = what the website should actually use. */
+:root {
+  /* Primary blue */
+  --dp-blue-50: #EEF4FF; /* oklch(96.6% 0.016 262.8) */
+  --dp-blue-100: #D9E6FF; /* oklch(92.3% 0.037 263.6) */
+  --dp-blue-200: #BCD3FF; /* oklch(86.4% 0.066 263.3) */
+  --dp-blue-300: #8EB8FF; /* oklch(78.0% 0.112 260.6) */
+  --dp-blue-400: #5991FF; /* oklch(67.2% 0.174 262.4) */
+  --dp-blue-500: #2962FF; /* oklch(56.2% 0.240 264.4) */
+  --dp-blue-600: #1B46F5; /* oklch(50.3% 0.261 265.3) */
+  --dp-blue-700: #1433E1; /* oklch(45.3% 0.257 265.6) */
+  --dp-blue-800: #172AB6; /* oklch(39.3% 0.215 266.9) */
+  --dp-blue-900: #192A8F; /* oklch(35.1% 0.166 268.1) */
+  /* Neutral gray */
+  --dp-gray-50: #FAFAFA; /* oklch(98.5% 0.000 0.0) */
+  --dp-gray-100: #F5F5F5; /* oklch(97.0% 0.000 0.0) */
+  --dp-gray-200: #E9EAEB; /* oklch(93.7% 0.002 0.0) */
+  --dp-gray-300: #D5D7DA; /* oklch(87.8% 0.005 258.3) */
+  --dp-gray-400: #A4A7AE; /* oklch(72.8% 0.011 267.3) */
+  --dp-gray-500: #717680; /* oklch(56.5% 0.017 264.4) */
+  --dp-gray-600: #535862; /* oklch(46.0% 0.017 264.4) */
+  --dp-gray-700: #414651; /* oklch(39.4% 0.020 266.0) */
+  --dp-gray-800: #252B37; /* oklch(28.9% 0.024 264.1) */
+  --dp-gray-900: #181D27; /* oklch(23.0% 0.021 264.0) */
+  /* Success */
+  --dp-green-50: #ECFDF3; /* oklch(97.9% 0.022 160.2) */
+  --dp-green-100: #DCFCE6; /* oklch(96.2% 0.044 155.5) */
+  --dp-green-200: #ABEFC6; /* oklch(89.6% 0.089 157.6) */
+  --dp-green-300: #75E0A7; /* oklch(82.7% 0.129 158.5) */
+  --dp-green-400: #47CD89; /* oklch(75.8% 0.153 157.2) */
+  --dp-green-500: #17B26A; /* oklch(67.3% 0.160 155.6) */
+  --dp-green-600: #079455; /* oklch(58.6% 0.143 155.2) */
+  --dp-green-700: #067647; /* oklch(49.9% 0.117 157.1) */
+  --dp-green-800: #085D3A; /* oklch(42.3% 0.095 158.6) */
+  --dp-green-900: #074D31; /* oklch(37.2% 0.081 159.9) */
+  /* Warning */
+  --dp-amber-50: #FFFAEB; /* oklch(98.5% 0.020 91.6) */
+  --dp-amber-100: #FEF0C7; /* oklch(95.6% 0.055 91.4) */
+  --dp-amber-200: #FEDF89; /* oklch(91.1% 0.111 90.3) */
+  --dp-amber-300: #FEC84B; /* oklch(85.9% 0.150 84.7) */
+  --dp-amber-400: #FDB022; /* oklch(81.1% 0.163 75.6) */
+  --dp-amber-500: #F79009; /* oklch(74.7% 0.170 62.1) */
+  --dp-amber-600: #DC6803; /* oklch(64.6% 0.170 50.2) */
+  --dp-amber-700: #B54708; /* oklch(53.9% 0.156 43.0) */
+  --dp-amber-800: #93370D; /* oklch(46.2% 0.134 40.9) */
+  --dp-amber-900: #7A2E0E; /* oklch(40.6% 0.114 40.6) */
+  /* Error */
+  --dp-red-50: #FEF3F2; /* oklch(97.2% 0.012 23.7) */
+  --dp-red-100: #FEE4E2; /* oklch(93.9% 0.029 23.0) */
+  --dp-red-200: #FECDCA; /* oklch(89.0% 0.056 22.3) */
+  --dp-red-300: #FDA29B; /* oklch(80.1% 0.109 24.6) */
+  --dp-red-400: #F97066; /* oklch(70.9% 0.170 26.5) */
+  --dp-red-500: #F04438; /* oklch(63.7% 0.210 28.5) */
+  --dp-red-600: #D92D20; /* oklch(57.6% 0.209 29.5) */
+  --dp-red-700: #B42318; /* oklch(50.0% 0.182 29.5) */
+  --dp-red-800: #912018; /* oklch(43.2% 0.150 29.0) */
+  --dp-red-900: #7A271A; /* oklch(39.8% 0.118 31.5) */
+  /* Accent · Teal */
+  --dp-teal-50: #F0FDF9; /* oklch(98.3% 0.015 175.7) */
+  --dp-teal-100: #CCFBEF; /* oklch(95.2% 0.051 177.9) */
+  --dp-teal-200: #99F6E0; /* oklch(90.9% 0.094 177.3) */
+  --dp-teal-300: #5FE9D0; /* oklch(85.2% 0.125 179.1) */
+  --dp-teal-400: #2ED3B7; /* oklch(78.0% 0.135 177.8) */
+  --dp-teal-500: #15B79E; /* oklch(69.9% 0.126 178.0) */
+  --dp-teal-600: #0E9384; /* oklch(59.6% 0.104 182.2) */
+  --dp-teal-700: #107569; /* oklch(50.7% 0.087 182.2) */
+  --dp-teal-800: #125D56; /* oklch(43.3% 0.070 185.5) */
+  --dp-teal-900: #134E48; /* oklch(38.5% 0.060 185.2) */
+  /* Accent · Indigo */
+  --dp-indigo-50: #EEF4FF; /* oklch(96.6% 0.016 262.8) */
+  --dp-indigo-100: #E0EAFF; /* oklch(93.6% 0.030 265.3) */
+  --dp-indigo-200: #C7D7FE; /* oklch(88.0% 0.057 267.6) */
+  --dp-indigo-300: #A4BCFD; /* oklch(80.1% 0.096 268.6) */
+  --dp-indigo-400: #8098F9; /* oklch(70.3% 0.145 271.7) */
+  --dp-indigo-500: #6172F3; /* oklch(60.7% 0.192 273.6) */
+  --dp-indigo-600: #444CE7; /* oklch(51.5% 0.229 272.8) */
+  --dp-indigo-700: #3538CD; /* oklch(45.1% 0.222 272.3) */
+  --dp-indigo-800: #2D31A6; /* oklch(39.6% 0.183 272.9) */
+  --dp-indigo-900: #2D3282; /* oklch(36.4% 0.132 275.0) */
+  --dp-white: #FFFFFF;
+
+  /* Logo gradient */
+  --dp-logo-start: #0025FF;
+  --dp-logo-end: #05A1FD;
+  --dp-gradient-brand: linear-gradient(90deg, var(--dp-logo-start), var(--dp-logo-end));
+
+  /* Semantic — use these in components */
+  --color-bg-default: var(--dp-white); /* Page background */
+  --color-bg-subtle: var(--dp-gray-50); /* Alternating section bands */
+  --color-bg-muted: var(--dp-gray-100); /* Cards on white, input fills */
+  --color-bg-brand-subtle: var(--dp-blue-50); /* Highlighted section / feature callout */
+  --color-bg-inverse: var(--dp-gray-900); /* Dark sections, footer */
+  --color-text-heading: var(--dp-gray-900); /* Headlines */
+  --color-text-body: var(--dp-gray-600); /* Paragraphs */
+  --color-text-muted: var(--dp-gray-500); /* Captions, small print */
+  --color-text-on-brand: var(--dp-white); /* Text on blue buttons / dark sections */
+  --color-text-link: var(--dp-blue-700); /* Inline links in body copy */
+  --color-border-default: var(--dp-gray-200); /* Card edges, dividers */
+  --color-border-strong: var(--dp-gray-300); /* Inputs, outlined buttons */
+  --color-action-primary: var(--dp-blue-600); /* Main CTA button fill */
+  --color-action-primary-hover: var(--dp-blue-700); /* CTA hover */
+  --color-focus-ring: var(--dp-blue-400); /* Keyboard focus outline */
+}
