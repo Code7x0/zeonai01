@@ -1,0 +1,485 @@
+/* hallmark: zeon-arch-stack · modern-minimal · custom (by request) */
+/* critique: centered purpose heading, 80×70 cards, tonal sequence, last-card release */
+/* waiver: section labels kept for Cohere-style stack identity requested by user */
+
+.zn-arch {
+  --arch-ink: var(--color-text-ink, #181d27);
+  --arch-muted: var(--color-text-muted, #535862);
+  --arch-line: #e4e0d6;
+  --arch-soft: #f4f2ee;
+  --arch-panel: #12141a;
+  --arch-panel-2: #1a1d24;
+  --arch-panel-line: #2a303b;
+  --arch-fg: #f5f6f8;
+  --arch-fg-muted: #9aa3b2;
+  --arch-signal: #1b46f5;
+  --arch-teal: #0e9384;
+  --arch-green: #17b26a;
+  --arch-amber: #dc6803;
+  --arch-red: #f04438;
+  --arch-tone-teal: #1a2e35;
+  --arch-tone-black: #000000;
+  --arch-tone-mist: #edebec;
+  --arch-tone-charcoal: #17171c;
+  --arch-tone-white: #ffffff;
+  --arch-sticky-top: 5.5rem;
+  --arch-peek: 1.75rem;
+  --arch-card-w: min(90vw, 96rem);
+  /*
+   * Leave ~20vh clear paper under the stuck stack so the next
+   * section can breathe (tall cards were eating the gap).
+   */
+  --arch-card-h: min(
+    66vh,
+    calc(100svh - var(--arch-sticky-top) - (5 * var(--arch-peek)) - 7.5rem)
+  );
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 5vh, 4.5rem) clamp(2rem, 5vh, 3.5rem);
+}
+
+.zn-arch-mount {
+  width: 100%;
+  max-width: none;
+}
+
+/* Host section — seamless into capabilities (shared paper, no seam) */
+#architecture {
+  padding-block: clamp(1.75rem, 3.5vh, 2.75rem) clamp(2.5rem, 6vh, 4.5rem);
+  border-bottom: none;
+  background: var(--color-paper, #f9f9f7);
+}
+
+#capabilities {
+  border-top: none;
+  background: var(--color-paper, #f9f9f7);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.zn-arch-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 4vh, 3.25rem);
+  padding-block: clamp(1.25rem, 3vh, 2.25rem);
+}
+.zn-arch-kicker {
+  margin: 0;
+  font-family: var(--font-body, var(--font-inter), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--arch-muted);
+}
+.zn-arch-title {
+  margin: 0;
+  font-family: var(--font-display, var(--font-heading), var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-display, clamp(2.5rem, 4.5vw + 0.75rem, 4.5rem));
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--arch-ink);
+  max-width: 14ch;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.zn-arch-lead {
+  margin: 0.5rem 0 0;
+  max-width: 42rem;
+  font-family: var(--font-body, var(--font-inter), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-lead, clamp(1.0625rem, 0.25vw + 1rem, 1.25rem));
+  line-height: 1.55;
+  color: var(--arch-muted);
+}
+
+.zn-arch-stack {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.zn-arch-card {
+  position: sticky;
+  top: calc(var(--arch-sticky-top) + (var(--arch-i, 0) * var(--arch-peek)));
+  z-index: calc(20 + var(--arch-i, 0));
+  width: var(--arch-card-w);
+  height: var(--arch-card-h);
+  min-height: 0;
+  max-height: 52rem;
+  margin-inline: auto;
+  /* No inter-card gap — empty margin was creating dead scroll + broken stack feel */
+  margin-bottom: 0;
+  border: 1px solid color-mix(in oklab, var(--arch-ink) 6%, transparent);
+  border-radius: 1.5rem;
+  background: var(--arch-tone-white);
+  color: var(--arch-ink);
+  /* Softer Cohere lift — barely visible, melts into paper */
+  box-shadow:
+    0 1px 0 color-mix(in oklab, #fff 75%, transparent) inset,
+    0 1px 2px rgba(24, 29, 39, 0.02),
+    0 8px 24px -16px rgba(24, 29, 39, 0.05),
+    0 20px 48px -32px rgba(24, 29, 39, 0.04);
+  overflow: clip;
+}
+
+/* Last layer: sit under peeks and leave clear paper below */
+.zn-arch-card:last-of-type {
+  height: min(
+    var(--arch-card-h),
+    calc(100svh - var(--arch-sticky-top) - (5 * var(--arch-peek)) - 7.5rem)
+  );
+}
+
+/* Document-flow spacer between stack and next section */
+.zn-arch-end {
+  display: block;
+  width: 100%;
+  height: clamp(5.5rem, 14vh, 10rem);
+  pointer-events: none;
+}
+
+.zn-arch-card.is-teal {
+  background: var(--arch-tone-teal);
+  color: #f4f7f8;
+  border-color: color-mix(in oklab, #fff 10%, transparent);
+}
+.zn-arch-card.is-black {
+  background: var(--arch-tone-black);
+  color: #f5f5f5;
+  border-color: color-mix(in oklab, #fff 12%, transparent);
+}
+.zn-arch-card.is-mist {
+  background: var(--arch-tone-mist);
+  color: var(--arch-ink);
+  border-color: color-mix(in oklab, var(--arch-ink) 8%, transparent);
+}
+.zn-arch-card.is-charcoal {
+  background: var(--arch-tone-charcoal);
+  color: #f3f3f5;
+  border-color: color-mix(in oklab, #fff 10%, transparent);
+}
+.zn-arch-card.is-white {
+  background: var(--arch-tone-white);
+  color: var(--arch-ink);
+}
+
+.zn-arch-card.is-teal .zn-arch-eyebrow,
+.zn-arch-card.is-black .zn-arch-eyebrow,
+.zn-arch-card.is-charcoal .zn-arch-eyebrow {
+  color: color-mix(in oklab, #fff 62%, transparent);
+}
+.zn-arch-card.is-teal .zn-arch-desc,
+.zn-arch-card.is-black .zn-arch-desc,
+.zn-arch-card.is-charcoal .zn-arch-desc,
+.zn-arch-card.is-teal .zn-arch-brief,
+.zn-arch-card.is-black .zn-arch-brief,
+.zn-arch-card.is-charcoal .zn-arch-brief {
+  color: color-mix(in oklab, #fff 72%, transparent);
+}
+
+.zn-arch-card-inner {
+  display: grid;
+  gap: 1.5rem;
+  height: 100%;
+  min-width: 0;
+  padding: clamp(1.5rem, 3.2vw, 3rem) clamp(1.35rem, 3vw, 3.25rem);
+  align-content: center;
+}
+@media (min-width: 960px) {
+  .zn-arch-card-inner {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(1.75rem, 3.5vw, 3.5rem);
+  }
+}
+
+.zn-arch-eyebrow {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-body, var(--font-inter), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--arch-muted);
+}
+.zn-arch-copy h3 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display, var(--font-heading), var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-section, clamp(1.75rem, 2vw + 0.9rem, 2.75rem));
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  max-width: 16ch;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.zn-arch-desc {
+  margin: 0 0 0.9rem;
+  max-width: 36rem;
+  font-family: var(--font-body, var(--font-inter), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-md, 1rem);
+  line-height: 1.55;
+  color: var(--arch-muted);
+}
+.zn-arch-brief {
+  margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-body, var(--font-inter), ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--arch-muted) 90%, transparent);
+}
+
+.zn-arch-dash-wrap {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.zn-arch-panel {
+  width: 100%;
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, var(--arch-panel-2), var(--arch-panel));
+  border: 1px solid var(--arch-panel-line);
+  box-shadow:
+    0 28px 64px -30px rgba(6, 8, 14, 0.7),
+    0 0 0 1px color-mix(in oklab, #fff 4%, transparent) inset;
+  color: var(--arch-fg);
+  overflow: clip;
+}
+.zn-arch-panel-h {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.15rem;
+  border-bottom: 1px solid var(--arch-panel-line);
+}
+.zn-arch-panel-h strong {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.zn-arch-panel-h span {
+  display: block;
+  margin-top: 0.22rem;
+  font-size: 0.72rem;
+  color: var(--arch-fg-muted);
+}
+.zn-arch-panel-live {
+  flex-shrink: 0;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--arch-green) 42%, transparent);
+  background: color-mix(in oklab, var(--arch-green) 14%, transparent);
+  color: #abefc6 !important;
+  font-size: 0.68rem !important;
+  margin-top: 0 !important;
+}
+.zn-arch-panel-b {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.zn-arch-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.zn-arch-stats > div {
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, #fff 3.5%, transparent);
+  border: 1px solid var(--arch-panel-line);
+}
+.zn-arch-stats span {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--arch-fg-muted);
+  margin-bottom: 0.28rem;
+}
+.zn-arch-stats strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.zn-arch-tiers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+.zn-arch-tiers span {
+  text-align: center;
+  padding: 0.6rem 0.4rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--arch-panel-line);
+  background: color-mix(in oklab, #fff 3.5%, transparent);
+  font-size: 0.7rem;
+  color: var(--arch-fg-muted);
+}
+.zn-arch-tiers span.is-mid {
+  border-color: color-mix(in oklab, var(--arch-signal) 45%, transparent);
+  color: #93c5fd;
+  background: color-mix(in oklab, var(--arch-signal) 12%, transparent);
+}
+
+.zn-arch-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.zn-arch-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.78rem 0.85rem;
+  border-radius: 0.8rem;
+  background: color-mix(in oklab, #fff 3.5%, transparent);
+  border: 1px solid var(--arch-panel-line);
+}
+.zn-arch-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--arch-fg-muted);
+}
+.zn-arch-dot.is-ok {
+  background: var(--arch-green);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--arch-green) 20%, transparent);
+}
+.zn-arch-dot.is-warn {
+  background: var(--arch-amber);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--arch-amber) 20%, transparent);
+}
+.zn-arch-dot.is-err {
+  background: var(--arch-red);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--arch-red) 20%, transparent);
+}
+.zn-arch-dot.is-info {
+  background: var(--arch-teal);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--arch-teal) 20%, transparent);
+}
+
+.zn-arch-row-copy {
+  min-width: 0;
+}
+.zn-arch-row-copy strong {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 560;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.zn-arch-row-copy em {
+  display: block;
+  margin-top: 0.16rem;
+  font-style: normal;
+  font-size: 0.7rem;
+  color: var(--arch-fg-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.zn-arch-pill {
+  flex-shrink: 0;
+  padding: 0.24rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+}
+.zn-arch-pill.is-ok {
+  color: #abefc6;
+  background: color-mix(in oklab, var(--arch-green) 18%, transparent);
+}
+.zn-arch-pill.is-warn {
+  color: #fec84b;
+  background: color-mix(in oklab, var(--arch-amber) 18%, transparent);
+}
+.zn-arch-pill.is-err {
+  color: #fda29b;
+  background: color-mix(in oklab, var(--arch-red) 18%, transparent);
+}
+.zn-arch-pill.is-info {
+  color: #5fe9d0;
+  background: color-mix(in oklab, var(--arch-teal) 18%, transparent);
+}
+
+.zn-arch-pipe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.zn-arch-pipe-step {
+  padding: 0.38rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--arch-panel-line);
+  font-size: 0.66rem;
+  color: var(--arch-fg-muted);
+}
+.zn-arch-pipe-step.is-on {
+  border-color: color-mix(in oklab, var(--arch-signal) 50%, transparent);
+  color: #93c5fd;
+  background: color-mix(in oklab, var(--arch-signal) 14%, transparent);
+}
+
+.zn-arch-mono {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--arch-panel-line);
+  background: #0b0d12;
+  color: #a8b0bd;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.64rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 6.75rem;
+  overflow: auto;
+}
+
+@media (max-width: 959px) {
+  .zn-arch {
+    --arch-card-w: min(92vw, 42rem);
+    --arch-card-h: auto;
+  }
+  .zn-arch-title {
+    max-width: 18ch;
+  }
+  .zn-arch-card {
+    position: relative;
+    top: auto !important;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin-bottom: 0.85rem;
+  }
+  .zn-arch-card:last-of-type {
+    margin-bottom: 0;
+  }
+  .zn-arch-end {
+    height: clamp(4rem, 14vh, 8rem);
+  }
+  .zn-arch-copy h3 {
+    max-width: none;
+  }
+  .zn-arch-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zn-arch-card {
+    scroll-margin-top: var(--arch-sticky-top);
+  }
+}
